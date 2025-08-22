@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princípios Orientadores - ITIL 4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #6f42c1;
+            --accent-color: #36b9cc;
+            --light-bg: #f8f9fc;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        
+        .module-nav {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .principle-card {
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: #f8f9ff;
+            transition: all 0.3s ease;
+        }
+        
+        .principle-card:hover {
+            background-color: #eef2ff;
+            transform: translateX(5px);
+        }
+        
+        .principle-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .principle-title {
+            color: var(--secondary-color);
+            margin-bottom: 0.8rem;
+        }
+        
+        .key-message {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .highlight-box {
+            background-color: #e9f7fe;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .table-principles {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .table-principles th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .table-principles td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .table-principles tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .table-principles tr:hover {
+            background-color: #e9ecef;
+        }
+        
+        .integration-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .framework-badge {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin: 0.2rem;
+            font-size: 0.9rem;
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            height: 12px;
+            border-radius: 10px;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <div class="header text-center">
+            <h1><i class="bi bi-compass"></i> Princípios Orientadores</h1>
+            <p class="lead mb-0">Diretrizes fundamentais para o gerenciamento de serviços eficaz</p>
+        </div>
+        
+        <!-- Navegação -->
+        <div class="module-nav">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Princípios da ITIL 4</h4>
+                <div class="d-flex">
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        <i class="bi bi-download"></i> Material
+                    </button>
+                    <button class="btn btn-sm btn-outline-success">
+                        <i class="bi bi-journal-text"></i> Notas
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#overview">Visão Geral</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#principles">Princípios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#integration">Integração</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#application">Aplicação</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Conteúdo principal -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Visão Geral -->
+                <div class="content-card" id="overview">
+                    <h3 class="chapter-title">Princípios Orientadores da ITIL 4</h3>
+                    
+                    <div class="key-message">
+                        <h5><i class="bi bi-chat-quote"></i> Importância dos Princípios</h5>
+                        <p class="mb-0">Os princípios orientadores incorporam as principais mensagens da ITIL e do gerenciamento de serviço em geral, apoiando ações bem-sucedidas e decisões apropriadas de todos os tipos e em todos os níveis.</p>
+                    </div>
+                    
+                    <p>Estes princípios podem ser usados para orientar as organizações em seu trabalho à medida que adotam uma abordagem de gerenciamento de serviço e adaptam a orientação da ITIL às suas próprias necessidades e circunstâncias específicas.</p>
+                    
+                    <p>Os princípios orientadores incentivam e apoiam as organizações na melhoria contínua em todos os níveis.</p>
+                    
+                    <h4 class="mt-4">Tabela 4.1 - Visão Geral dos Princípios Orientadores</h4>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-principles">
+                            <thead>
+                                <tr>
+                                    <th width="25%">Princípio Orientador</th>
+                                    <th width="75%">Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Foco no valor</strong></td>
+                                    <td>Tudo o que a organização faz precisa, direta ou indiretamente, mapear para valor às partes interessadas.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Começar de onde você está</strong></td>
+                                    <td>Não comece do zero e construa algo novo sem considerar o que já está disponível para ser alavancado.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Progredir iterativamente com feedback</strong></td>
+                                    <td>Não tente fazer tudo de uma só vez. Mesmo grandes iniciativas devem ser realizadas iterativamente.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Colaborar e promover visibilidade</strong></td>
+                                    <td>Trabalhar em conjunto, além das fronteiras, produz resultados que têm grande adesão e maior relevância.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pensar e trabalhar holisticamente</strong></td>
+                                    <td>Nenhum serviço ou elemento usado para prestar serviço é autônomo.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Manter de forma simples e prática</strong></td>
+                                    <td>Se algo falha em fornecer valor ou produzir um resultado útil, então elimine-o.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Otimizar e automatizar</strong></td>
+                                    <td>Recursos de todos os tipos devem ser utilizados da forma mais eficaz possível.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Princípios Detalhados -->
+                <div class="content-card" id="principles">
+                    <h3 class="chapter-title">Detalhamento dos Princípios</h3>
+                    
+                    <!-- Princípio 1 -->
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <h4 class="principle-title">Foco no valor</h4>
+                        <p>Tudo o que a organização faz precisa, direta ou indiretamente, mapear para valor às partes interessadas.</p>
+                        <p>O princípio foco no valor engloba muitas perspectivas, incluindo a experiência dos clientes e usuários.</p>
+                    </div>
+                    
+                    <!-- Princípio 2 -->
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="bi bi-signpost"></i>
+                        </div>
+                        <h4 class="principle-title">Começar de onde você está</h4>
+                        <p>Não comece do zero e construa algo novo sem considerar o que já está disponível para ser alavancado. É provável que haja muita coisa nos serviços, processos, programas, projetos e pessoas atuais que podem ser usados para criar o resultado desejado.</p>
+                        <p>O estado atual deve ser investigado e observado diretamente para garantir que seja completamente entendido.</p>
+                    </div>
+                    
+                    <!-- Princípio 3 -->
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <h4 class="principle-title">Progredir iterativamente com feedback</h4>
+                        <p>Não tente fazer tudo de uma só vez. Mesmo grandes iniciativas devem ser realizadas iterativamente. Ao organizar o trabalho em seções menores e gerenciáveis, que podem ser executadas e concluídas em tempo hábil, é mais fácil manter um foco incisivo em cada esforço.</p>
+                        <p>Usar feedback antes, durante e depois de cada iteração garantirá que as ações sejam focadas e apropriadas, mesmo que as circunstâncias mudem.</p>
+                    </div>
+                    
+                    <!-- Princípio 4 -->
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h4 class="principle-title">Colaborar e promover visibilidade</h4>
+                        <p>Trabalhar em conjunto, além das fronteiras, produz resultados que têm grande adesão, maior relevância para os objetivos e aumento da probabilidade de sucesso a longo prazo.</p>
+                        <p>Alcançar objetivos requer informação, compreensão e confiança. Trabalho e consequências devem se tornar visíveis, agendas ocultas, evitadas e informações, compartilhadas no maior grau possível.</p>
+                    </div>
+                    
+                    <!-- Princípio 5 -->
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="bi bi-puzzle"></i>
+                        </div>
+                        <h4 class="principle-title">Pensar e trabalhar holisticamente</h4>
+                        <p>Nenhum serviço ou elemento usado para prestar serviço é autônomo. Os resultados alcançados pelo provedor de serviço e pelo consumidor do serviço serão prejudicados, a menos que a organização ocupe-se do serviço como um todo, e não apenas com seus componentes.</p>
+                        <p>Resultados são entregues para clientes internos e externos por intermédio de um gerenciamento efetivo e eficaz e da dinâmica integração de informação, tecnologia, organização, pessoas, práticas, parceiros e acordos, que devem ser todos coordenados para fornecer um determinado valor.</p>
+                    </div>
+                    
+                    <!-- Princípio 6 -->
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h4 class="principle-title">Manter de forma simples e prática</h4>
+                        <p>Se um processo, serviço, ação ou métrica falha em fornecer valor ou produzir um resultado útil, então elimine-o. Em um processo ou procedimento, utilize o número mínimo de passos, indispensáveis para realizar o(s) objetivo(s). Use sempre o pensamento baseado em resultados para produzir soluções práticas que entreguem resultados.</p>
+                    </div>
+                    
+                    <!-- Princípio 7 -->
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h4 class="principle-title">Otimizar e automatizar</h4>
+                        <p>Recursos de todos os tipos, particularmente RH, devem ser utilizados da forma mais eficaz possível. Elimine qualquer coisa que efetivamente seja um desperdício e use a tecnologia para alcançar o que quer que ela seja capaz de fazer. A intervenção humana só deve acontecer onde ela realmente agregar valor.</p>
+                    </div>
+                </div>
+                
+                <!-- Integração com Outros Frameworks -->
+                <div class="content-card" id="integration">
+                    <h3 class="chapter-title">Integração com Outros Frameworks e Métodos</h3>
+                    
+                    <div class="integration-section">
+                        <h4 class="text-center mb-4">Os princípios orientadores se refletem em muitas outras estruturas e métodos</h4>
+                        
+                        <div class="text-center">
+                            <span class="framework-badge">Lean</span>
+                            <span class="framework-badge">Agile</span>
+                            <span class="framework-badge">DevOps</span>
+                            <span class="framework-badge">COBIT</span>
+                            <span class="framework-badge">SCRUM</span>
+                            <span class="framework-badge">Kanban</span>
+                        </div>
+                        
+                        <p class="text-center mt-4">Isso permite que as organizações efetivamente integrem o uso de múltiplos métodos em uma abordagem geral para o gerenciamento de serviços.</p>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <h5><i class="bi bi-lightbulb"></i> Aplicação Universal</h5>
+                        <p>Os princípios orientadores são aplicáveis a praticamente qualquer iniciativa e para todos os relacionamentos com grupos de partes interessadas. Por exemplo, o primeiro princípio, foco no valor, pode (e deve) ser aplicado não apenas aos consumidores do serviço, mas a todas as partes interessadas relevantes e suas respectivas definições de valor.</p>
+                    </div>
+                </div>
+                
+                <!-- Aplicação Prática -->
+                <div class="content-card" id="application">
+                    <h3 class="chapter-title">Aplicação Prática dos Princípios</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-check-circle"></i> Benefícios</h5>
+                                    <ul class="mt-3">
+                                        <li>Direcionam ações bem-sucedidas</li>
+                                        <li>Apoiam decisões apropriadas em todos os níveis</li>
+                                        <li>Facilitam a adaptação da ITIL às necessidades específicas</li>
+                                        <li>Promovem a melhoria contínua</li>
+                                        <li>Permitem integração com outros frameworks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-clipboard-check"></i> Como Implementar</h5>
+                                    <ul class="mt-3">
+                                        <li>Incorporar aos processos de tomada de decisão</li>
+                                        <li>Usar como base para políticas e procedimentos</li>
+                                        <li>Incluir no treinamento e desenvolvimento</li>
+                                        <li>Aplicar em iniciativas de transformação</li>
+                                        <li>Utilizar para avaliar práticas existentes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-message mt-4">
+                        <h5><i class="bi bi-chat-quote"></i> Mensagem Final</h5>
+                        <p class="mb-0">Os princípios orientadores da ITIL 4 fornecem uma base sólida para o gerenciamento de serviços eficaz, permitindo que as organizações criem valor de forma consistente para todas as partes interessadas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barra de progresso e navegação -->
+        <div class="progress-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Progresso do Capítulo</h5>
+                <span class="badge bg-primary">100% Completo</span>
+            </div>
+            <div class="progress mb-4">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="conceitos-chave.html" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Capítulo Anterior
+                </a>
+                <a href="4dimensoes.html" class="btn btn-primary">
+                    Próximo Capítulo <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+        
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

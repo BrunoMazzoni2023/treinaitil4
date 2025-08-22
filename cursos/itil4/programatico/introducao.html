@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 0 - Introdução | Conteúdo Programático</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/cursos.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #6f42c1;
+            --accent-color: #36b9cc;
+            --light-bg: #f8f9fc;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        
+        .module-nav {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .topic-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight-box {
+            background-color: #e9f7fe;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .key-term {
+            background-color: #f0f4ff;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            height: 12px;
+            border-radius: 10px;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: #495057;
+        }
+        
+        .figure-img {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .reference-item {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <div class="header text-center">
+            <h1><i class="bi bi-journal-bookmark-fill"></i> Módulo 0 - Introdução</h1>
+            <p class="lead mb-0">Fundamentos do Gerenciamento de Serviços de TI e ITIL 4</p>
+        </div>
+        
+        <!-- Navegação do módulo -->
+        <div class="module-nav">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Tópicos do Módulo</h4>
+                <div class="d-flex">
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        <i class="bi bi-download"></i> Material
+                    </button>
+                    <button class="btn btn-sm btn-outline-success">
+                        <i class="bi bi-journal-text"></i> Notas
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#topic1">1.1 GSTI Moderno</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#topic2">1.2 Sobre ITIL 4</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#topic3">1.3 Estrutura ITIL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#topic4">1.3.1 SVS ITIL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#topic5">1.3.2 4 Dimensões</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Conteúdo principal -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Tópico 1.1 -->
+                <div class="content-card" id="topic1">
+                    <h3 class="topic-title">1.1 Gerenciamento de Serviço de TI no Mundo Moderno</h3>
+                    <p>De acordo com a Organização Mundial do Comércio, os serviços incluem o maior e mais dinâmico componente tanto das economias desenvolvidas quanto das em desenvolvimento. Serviços são a principal forma das organizações criarem valor para si mesmas e seus clientes.</p>
+                    
+                    <div class="highlight-box">
+                        <h5><i class="bi bi-lightbulb"></i> Contexto Atual</h5>
+                        <p>Hoje, quase todos os serviços são habilitados por TI, o que significa que existe um enorme benefício para organizações em criar, expandir e melhorar a habilidade do seu gerenciamento de serviço de TI.</p>
+                    </div>
+                    
+                    <h5>Tecnologias Emergentes</h5>
+                    <ul>
+                        <li>Computação em nuvem</li>
+                        <li>Infraestrutura como serviço (IaaS)</li>
+                        <li>Machine learning</li>
+                        <li>Blockchain</li>
+                    </ul>
+                    
+                    <p>Estes desenvolvimentos abriram novas oportunidades para criação de valor, e levaram a TI a se tornar um importante impulsionador de negócio e fonte de vantagem competitiva.</p>
+                    
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-info-circle"></i> <strong>Transformação Digital:</strong> Mais do que tecnologia, envolve uma evolução na forma como as organizações funcionam, exigindo equilíbrio entre estabilidade e agilidade operacional.
+                    </div>
+                </div>
+                
+                <!-- Tópico 1.2 -->
+                <div class="content-card" id="topic2">
+                    <h3 class="topic-title">1.2 Sobre a ITIL 4</h3>
+                    <p>A ITIL lidera a indústria de GSTI com programas de orientação, treinamento e certificação há mais de 30 anos.</p>
+                    
+                    <div class="d-flex align-items-center bg-light p-3 rounded mb-4">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="bi bi-arrow-repeat" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0">ITIL 4: A Evolução</h5>
+                            <p class="mb-0">Atualiza a ITIL ao remodelar práticas estabelecidas em um contexto mais amplo</p>
+                        </div>
+                    </div>
+                    
+                    <h5>Principais Características da ITIL 4:</h5>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-person-check text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h6>Foco na Experiência do Cliente</h6>
+                                    <p class="text-muted small">Coloca o cliente no centro dos serviços</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-diagram-3 text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h6>Integração com Novas Abordagens</h6>
+                                    <p class="text-muted small">Adota Lean, Agile e DevOps</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-gear text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h6>Sistema Flexível e Integrado</h6>
+                                    <p class="text-muted small">Governança efetiva de serviços habilitados por TI</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-graph-up text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h6>Potencial da Tecnologia Moderna</h6>
+                                    <p class="text-muted small">Orientação para novos desafios em gerenciamento de serviço</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tópico 1.3 -->
+                <div class="content-card" id="topic3">
+                    <h3 class="topic-title">1.3 A Estrutura e os Benefícios do Modelo ITIL 4</h3>
+                    <p>Os principais componentes da estrutura ITIL 4 são:</p>
+                    
+                    <div class="row text-center mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="bg-primary bg-gradient p-3 rounded-circle d-inline-block mb-3">
+                                        <i class="bi bi-shuffle text-white" style="font-size: 1.8rem;"></i>
+                                    </div>
+                                    <h5>Sistema de Valor de Serviço (SVS) ITIL</h5>
+                                    <p>Como os componentes trabalham juntos para facilitar a criação de valor</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="bg-success bg-gradient p-3 rounded-circle d-inline-block mb-3">
+                                        <i class="bi bi-aspect-ratio text-white" style="font-size: 1.8rem;"></i>
+                                    </div>
+                                    <h5>Modelo de Quatro Dimensões</h5>
+                                    <p>Abordagem holística para o gerenciamento de serviço</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning mt-3">
+                        <i class="bi bi-lightbulb"></i> A combinação flexível desses componentes requer integração e coordenação para manter a consistência da organização.
+                    </div>
+                </div>
+                
+                <!-- Tópico 1.3.1 -->
+                <div class="content-card" id="topic4">
+                    <h3 class="topic-title">1.3.1 O SVS ITIL</h3>
+                    <p>O SVS ITIL representa como os vários componentes e atividades da organização trabalham juntos para facilitar a criação de valor através dos serviços habilitados por TI.</p>
+                    
+                    <div class="text-center my-4">
+                        <div class="bg-light p-4 rounded">
+                            <h5 class="text-primary">Figura 1.1 - O Sistema de Valor de Serviço</h5>
+                         <img src="/svs.jpg" class="figure-img img-fluid rounded" alt="Sistema de Valor de Serviço ITIL">
+                            <p class="text-muted mt-2">Representação visual dos componentes do SVS ITIL</p>
+                        </div>
+                    </div>
+                    
+                    <h5>Componentes Principais do SVS ITIL:</h5>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Cadeia de Valor de Serviço ITIL</h6>
+                                        <span class="badge bg-primary rounded-pill">Operacional</span>
+                                    </div>
+                                    <p class="mb-1">Modelo operacional para criação, entrega e melhoria contínua dos serviços</p>
+                                    <small class="text-muted">Define seis atividades principais combináveis em fluxos de valor</small>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Práticas ITIL</h6>
+                                        <span class="badge bg-success rounded-pill">Ferramentas</span>
+                                    </div>
+                                    <p class="mb-1">Cada prática dá suporte a diversas atividades da cadeia de valor</p>
+                                    <small class="text-muted">Conjunto abrangente e versátil para profissionais de GSTI</small>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Princípios Orientadores ITIL</h6>
+                                        <span class="badge bg-info rounded-pill">Diretrizes</span>
+                                    </div>
+                                    <p class="mb-1">Guiam decisões e ações da organização</p>
+                                    <small class="text-muted">Base da cultura e conduta organizacional</small>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Governança</h6>
+                                        <span class="badge bg-warning text-dark rounded-pill">Alinhamento</span>
+                                    </div>
+                                    <p class="mb-1">Alinha operações com o direcionamento estratégico</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Melhoria Contínua</h6>
+                                        <span class="badge bg-danger rounded-pill">Evolução</span>
+                                    </div>
+                                    <p class="mb-1">Suporta todos os componentes do SVS ITIL</p>
+                                    <small class="text-muted">Modelo prático para manter resiliência e agilidade</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tópico 1.3.2 -->
+                <div class="content-card" id="topic5">
+                    <h3 class="topic-title">1.3.2 O Modelo de Quatro Dimensões</h3>
+                    <p>Para garantir uma abordagem holística para o gerenciamento de serviço, a ITIL 4 delineia quatro dimensões que devem ser consideradas para cada componente do SVS.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <span class="badge bg-primary rounded-pill mb-2">Dimensão 1</span>
+                                    <h5>Organizações e Pessoas</h5>
+                                    <p>Estrutura organizacional, papéis, responsabilidades e competências necessárias</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <span class="badge bg-success rounded-pill mb-2">Dimensão 2</span>
+                                    <h5>Informação e Tecnologia</h5>
+                                    <p>Informação, conhecimentos e tecnologias necessárias para gerenciamento de serviços</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <span class="badge bg-warning text-dark rounded-pill mb-2">Dimensão 3</span>
+                                    <h5>Parceiros e Fornecedores</h5>
+                                    <p>Relações com outras organizações envolvidas no fornecimento de serviços</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <span class="badge bg-info rounded-pill mb-2">Dimensão 4</span>
+                                    <h5>Fluxos de Valor e Processos</h5>
+                                    <p>Como as partes da organização trabalham em conjunto para criar valor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <h5><i class="bi bi-balance"></i> Equilíbrio das Dimensões</h5>
+                        <p>Ao colocar foco suficiente em cada uma das quatro dimensões, uma organização pode garantir que seu SVS permaneça equilibrado e eficaz.</p>
+                    </div>
+                    
+                    <h5 class="mt-4">Caso Prático: A Visão do CIO para a Axle</h5>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="bi bi-quote text-primary" style="font-size: 2rem;"></i>
+                            </div>
+                            <div>
+                                <p class="fst-italic">"Atualmente, o ritmo de mudança da indústria é rápido, com o termo 'Quarta revolução industrial' sendo amplamente utilizado. Empresas como a Axle estão competindo com disrupções que incluem carros autônomos e compartilhamento de veículos."</p>
+                                <p class="mb-0"><strong>Henri, CIO da Axle</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barra de progresso e navegação -->
+        <div class="progress-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Progresso do Módulo</h5>
+                <span class="badge bg-primary">25% Completo</span>
+            </div>
+            <div class="progress mb-4">
+                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Módulo Anterior
+                </a>
+                <a href="#" class="btn btn-primary">
+                    Próximo Módulo <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+        
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
