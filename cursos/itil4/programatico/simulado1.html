@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado ITIL 4 Foundation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+        .option {
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        .option.selected {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .results {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1a252f;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .question-number {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulado ITIL 4 Foundation</h1>
+        
+        <div id="questions-container">
+            <!-- As questões serão inseridas aqui via JavaScript -->
+        </div>
+        
+        <div class="controls">
+            <button id="check-answers">Verificar respostas</button>
+            <button id="restart">Reiniciar simulado</button>
+        </div>
+        
+        <div id="results" class="results">
+            <div class="score">Sua pontuação: <span id="score-value">0</span>/40</div>
+            <p id="results-message"></p>
+        </div>
+    </div>
+
+    <script>
+        // Dados das questões
+        const questions = [
+            {
+                question: "1. Qual prática é responsável por implantar componentes em ambientes de produção?",
+                options: [
+                    "Gerenciamento de implantação",
+                    "Gerenciamento de liberação",
+                    "Gerenciamento de mudança",
+                    "Gerenciamento de configuração"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "2. Qual prática abrange a classificação e a propriedade de consultas e requisições dos usuários?",
+                options: [
+                    "Central de serviço",
+                    "Gerenciamento de nível de serviço",
+                    "Gerenciamento de requisição de serviço",
+                    "Gerenciamento de incidente"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "3. Qual prática identifica métricas que refletem a experiência do cliente em um serviço?",
+                options: [
+                    "Gerenciamento de nível de serviço",
+                    "Gerenciamento de portfólio de serviços",
+                    "Gerenciamento de relacionamento",
+                    "Gerenciamento de fornecedor"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "4. Qual é o PRINCIPAL uso de um calendário de mudanças?",
+                options: [
+                    "Planejar mudanças e ajudar a evitar conflitos",
+                    "Registrar todas as mudanças implementadas",
+                    "Comunicar mudanças para os usuários",
+                    "Aprovar mudanças de emergência"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "5. Qual dimensão do gerenciamento de serviço se concentra nas atividades e em como elas são coordenadas?",
+                options: [
+                    "Fluxos de valor e processos",
+                    "Organização e pessoas",
+                    "Informação e tecnologia",
+                    "Parceiros e fornecedores"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "6. Como a categorização de incidentes auxilia a prática do 'gerenciamento de incidente'?",
+                options: [
+                    "Ela ajuda a direcionar o incidente para a área de suporte correta",
+                    "Ela determina a prioridade do incidente",
+                    "Ela identifica o tempo de resolução do incidente",
+                    "Ela registra o impacto do incidente"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "7. Identifique as palavras que estão faltando na frase a seguir: Um serviço é um meio que permite a cocriação de valor ao facilitar [?] que os clientes desejam alcançar.",
+                options: [
+                    "os resultados",
+                    "os processos",
+                    "as atividades",
+                    "os produtos"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "8. Qual é uma recomendação da prática de 'melhoria contínua'?",
+                options: [
+                    "Mesmo que pequena, deve haver pelo menos uma equipe dedicada a liderar os esforços de 'melhoria contínua'",
+                    "Deve ser realizada apenas após grandes falhas de serviço",
+                    "Deve ser responsabilidade exclusiva da gerência sênior",
+                    "Deve focar apenas em melhorias tecnológicas"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "9. Qual é um potencial benefício de usar uma ferramenta de gerenciamento de serviço de TI para suportar a prática de 'gerenciamento de incidente'?",
+                options: [
+                    "Podemos fornecer correspondência automatizada entre incidentes e problemas ou erros conhecidos",
+                    "Podemos eliminar completamente a necessidade de uma central de serviços",
+                    "Podemos evitar a ocorrência de incidentes",
+                    "Podemos reduzir o custo das licenças de software"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "10. Qual papel pode enviar requisições de serviço?",
+                options: [
+                    "O usuário ou o representante autorizado dele",
+                    "Apenas o gerente de serviços",
+                    "Apenas a central de serviços",
+                    "Apenas o administrador do sistema"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "11. Qual prática fornece um ponto único de contato para os usuários?",
+                options: [
+                    "Central de serviço",
+                    "Gerenciamento de incidente",
+                    "Gerenciamento de problema",
+                    "Gerenciamento de acesso"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "12. Qual princípio orientador recomenda que as quatro dimensões do gerenciamento de serviço sejam consideradas?",
+                options: [
+                    "Pensar e trabalhar holisticamente",
+                    "Começar de onde você está",
+                    "Manter simples e prático",
+                    "Otimizar e automatizar"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "13. O que seria suportado pela prática de 'gerenciamento de requisição de serviço'?",
+                options: [
+                    "Uma requisição de um usuário para algo que é parte normal da entrega de serviço",
+                    "Uma reclamação formal sobre a qualidade do serviço",
+                    "Uma solicitação para investigar a causa raiz de um incidente",
+                    "Uma proposta para modificar um acordo de nível de serviço"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "14. Qual prática é de responsabilidade de todos na organização?",
+                options: [
+                    "Melhoria contínua",
+                    "Gerenciamento de mudança",
+                    "Gerenciamento de incidente",
+                    "Gerenciamento de problema"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "15. Identifique a palavra que está faltando na frase a seguir: O propósito da prática de 'gerenciamento de segurança da informação' é [?] as informações da organização.",
+                options: [
+                    "Proteger",
+                    "Documentar",
+                    "Auditar",
+                    "Classificar"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "16. Qual princípio orientador recomenda a coleta de dados antes de decidir o que pode ser reutilizado?",
+                options: [
+                    "Começar de onde você está",
+                    "Focar no valor",
+                    "Progressar iterativamente com feedback",
+                    "Colaborar e promover visibilidade"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "17. O que NÃO é normalmente incluído como parte do gerenciamento de incidente?",
+                options: [
+                    "Procedimentos detalhados para o diagnóstico de incidentes",
+                    "Restauração do serviço o mais rápido possível",
+                    "Minimização do impacto negativo nas operações de negócio",
+                    "Comunicação com os usuários sobre o status do incidente"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "18. Qual das opções a seguir descreve a natureza dos princípios orientadores?",
+                options: [
+                    "Os princípios orientadores podem orientar uma organização em todas as circunstâncias",
+                    "Os princípios orientadores são regras obrigatórias para certificação",
+                    "Os princípios orientadores se aplicam apenas a grandes organizações",
+                    "Os princípios orientadores são específicos para cada setor de negócio"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "19. Qual afirmativa sobre uma autoridade de mudança está CORRETA?",
+                options: [
+                    "Uma autoridade de mudança deve ser atribuída para cada tipo de mudança e modelo de mudança",
+                    "Uma autoridade de mudança é necessária apenas para mudanças de emergência",
+                    "Uma autoridade de mudança é sempre o gerente de TI mais sênior",
+                    "Uma autoridade de mudança é responsável por implementar todas as mudanças"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "20. Qual prática tem o propósito de disponibilizar para uso serviços e características novos e modificados?",
+                options: [
+                    "Gerenciamento de liberação",
+                    "Gerenciamento de implantação",
+                    "Gerenciamento de mudança",
+                    "Gerenciamento de configuração"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "21. Qual atividade da cadeia de valor garante que as pessoas entendam a visão da organização?",
+                options: [
+                    "Planejar",
+                    "Melhorar",
+                    "Entregar e suportar",
+                    "Projetar e transicionar"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "22. Qual afirmativa sobre as atividades da cadeia de valor está CORRETA?",
+                options: [
+                    "Cada atividade da cadeia de valor contribui para a cadeia de valor ao transformar entradas específicas em saídas",
+                    "As atividades da cadeia de valor são independentes umas das outras",
+                    "As atividades da cadeia de valor são aplicáveis apenas a organizações de TI",
+                    "As atividades da cadeia de valor substituem completamente os processos de serviço"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "23. Qual é o propósito da prática de 'gerenciamento de fornecedor'?",
+                options: [
+                    "Garantir que os fornecedores de uma organização e seus níveis de desempenho sejam gerenciados adequadamente para oferecer suporte ao fornecimento contínuo de produtos e serviços de qualidade",
+                    "Negociar os menores preços possíveis com todos os fornecedores",
+                    "Eliminar a dependência de fornecedores externos",
+                    "Centralizar todas as aquisições de hardware e software"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "24. Quais são os dois tipos de custos que um consumidor de serviço deve avaliar?",
+                options: [
+                    "Os custos removidos pelo serviço e os custos impostos pelo serviço",
+                    "Custos diretos e indiretos",
+                    "Custos fixos e variáveis",
+                    "Custos de capital e operacionais"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "25. Qual é o propósito da prática de 'central de serviço'?",
+                options: [
+                    "Capturar a demanda de resolução de incidentes e requisições de serviço",
+                    "Fornecer suporte técnico especializado para problemas complexos",
+                    "Gerenciar todos os contratos com fornecedores",
+                    "Desenvolver novos serviços para a organização"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "26. Como uma organização deve adotar métodos de melhoria contínua?",
+                options: [
+                    "Selecionando alguns métodos principais para os tipos de melhoria que a organização faz",
+                    "Implementando todos os métodos disponíveis simultaneamente",
+                    "Terceirizando a melhoria contínua para consultores especializados",
+                    "Focando apenas em métodos quantitativos e baseados em dados"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "27. Qual conceito da ITIL descreve a governança?",
+                options: [
+                    "O sistema de valor de serviço",
+                    "A cadeia de valor de serviço",
+                    "As quatro dimensões do gerenciamento de serviços",
+                    "O modelo de maturidade de capacidades"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "28. Qual é a recomendação da prática de 'central de serviço'?",
+                options: [
+                    "As centrais de serviço devem entender a organização de forma abrangente",
+                    "As centrais de serviço devem ser totalmente automatizadas",
+                    "As centrais de serviço devem operar apenas em horário comercial",
+                    "As centrais de serviço devem focar apenas em incidentes críticos"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "29. Qual princípio orientador recomenda organizar o trabalho em partes menores e gerenciáveis que podem ser realizadas e concluídas de maneira oportuna?",
+                options: [
+                    "Progressar iterativamente com feedback",
+                    "Manter simples e prático",
+                    "Focar no valor",
+                    "Otimizar e automatizar"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "30. O que é uma mudança padrão?",
+                options: [
+                    "Uma mudança bem entendida, plenamente documentada e pré-autorizada",
+                    "Uma mudança que segue um modelo específico da indústria",
+                    "Uma mudança que afeta apenas componentes não críticos",
+                    "Uma mudança que pode ser implementada sem aprovação formal"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "31. O que acontece se uma solução de contorno se torna o meio permanente de lidar com um problema que não pode ser resolvido de forma rentável?",
+                options: [
+                    "O problema permanece com o status de erro conhecido",
+                    "O problema é considerado resolvido e é fechado",
+                    "O problema é reclassificado como incidente crítico",
+                    "O problema é escalado para a diretoria executiva"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "32. Qual das opções a seguir é a definição de mudança?",
+                options: [
+                    "Aumentar, modificar ou remover qualquer elemento que possa afetar diretamente ou afetar os serviços",
+                    "A implantação de novas versões de software em produção",
+                    "A substituição de hardware obsoleto por novos equipamentos",
+                    "A atualização da documentação de processos de serviço"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "33. Qual das opções a seguir é a definição de evento?",
+                options: [
+                    "Qualquer mudança de estado que tenha relevância para o gerenciamento de um serviço ou de outro item de configuração",
+                    "Um incidente que impacta múltiplos usuários simultaneamente",
+                    "Uma reunião formal para revisar o desempenho do serviço",
+                    "Uma interação planejada com clientes para coletar feedback"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "34. Qual das opções a seguir oferece uma descrição de resultados?",
+                options: [
+                    "Consequências desejadas por uma parte interessada",
+                    "Métricas quantitativas de desempenho de serviço",
+                    "Relatórios de status de incidentes e problemas",
+                    "Documentação de procedimentos operacionais"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "35. O que NÃO é o foco principal da dimensão 'informação e tecnologia'?",
+                options: [
+                    "Papéis e responsabilidades",
+                    "Sistemas de gerenciamento de serviços",
+                    "Bancos de dados de configuração",
+                    "Ferramentas de automação de processos"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "36. Quais práticas normalmente estão envolvidas na implementação de uma resolução de problema?",
+                options: [
+                    "1 e 4 (Melhoria contínua e Habilitação de mudança)",
+                    "2 e 3 (Gerenciamento de requisição de serviço e Gerenciamento de nível de serviço)",
+                    "1 e 2 (Melhoria contínua e Gerenciamento de requisição de serviço)",
+                    "3 e 4 (Gerenciamento de nível de serviço e Habilitação de mudança)"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "37. Qual é uma consideração fundamental para o princípio orientador 'manter de forma simples e prática'?",
+                options: [
+                    "Entender como cada elemento contribui para a criação de valor",
+                    "Eliminar toda a documentação de processos",
+                    "Reduzir custos a qualquer preço",
+                    "Automatizar todas as atividades possíveis"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "38. O que deve ser feito primeiro para se aplicar o princípio orientador 'foco no valor'?",
+                options: [
+                    "Determinar quem é o consumidor do serviço em cada situação",
+                    "Calcular o retorno sobre o investimento de cada serviço",
+                    "Identificar todos os stakeholders do serviço",
+                    "Documentar os acordos de nível de serviço"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "39. Um provedor de serviço descreve um pacote que abrange um computador com software, licenças e suporte. Esse pacote é um exemplo de quê?",
+                options: [
+                    "Oferta de serviço",
+                    "Produto de serviço",
+                    "Contrato de serviço",
+                    "Portfólio de serviços"
+                ],
+                correctIndex: 0
+            },
+            {
+                question: "40. Qual das opções a seguir é a definição de garantia?",
+                options: [
+                    "Confirmação de que um produto ou serviço atenderá aos requisitos acordados",
+                    "Promessa formal de reembolso em caso de falha do serviço",
+                    "Documento que descreve as funcionalidades de um serviço",
+                    "Processo de teste de software antes da implantação"
+                ],
+                correctIndex: 0
+            }
+        ];
+
+        // Variáveis de estado
+        let userAnswers = Array(questions.length).fill(null);
+        let quizSubmitted = false;
+
+        // Inicializar o simulado
+        function initializeQuiz() {
+            const questionsContainer = document.getElementById('questions-container');
+            questionsContainer.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question';
+                
+                const questionNumber = document.createElement('div');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = `Questão ${index + 1}`;
+                
+                const questionText = document.createElement('div');
+                questionText.className = 'question-text';
+                questionText.textContent = q.question;
+                
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'options';
+                
+                q.options.forEach((option, optionIndex) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'option';
+                    optionElement.textContent = option;
+                    optionElement.dataset.index = optionIndex;
+                    
+                    optionElement.addEventListener('click', () => {
+                        if (!quizSubmitted) {
+                            // Desselecionar outras opções
+                            optionsContainer.querySelectorAll('.option').forEach(opt => {
+                                opt.classList.remove('selected');
+                            });
+                            
+                            // Selecionar esta opção
+                            optionElement.classList.add('selected');
+                            userAnswers[index] = optionIndex;
+                        }
+                    });
+                    
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                const feedback = document.createElement('div');
+                feedback.id = `feedback-${index}`;
+                feedback.className = 'feedback';
+                
+                questionElement.appendChild(questionNumber);
+                questionElement.appendChild(questionText);
+                questionElement.appendChild(optionsContainer);
+                questionElement.appendChild(feedback);
+                
+                questionsContainer.appendChild(questionElement);
+            });
+        }
+
+        // Verificar respostas
+        function checkAnswers() {
+            quizSubmitted = true;
+            let correctCount = 0;
+            
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const options = document.querySelectorAll(`#questions-container .question:nth-child(${index + 1}) .option`);
+                const feedback = document.getElementById(`feedback-${index}`);
+                
+                // Remover classes anteriores
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                });
+                
+                if (userAnswer !== null) {
+                    if (userAnswer === q.correctIndex) {
+                        options[userAnswer].classList.add('correct');
+                        feedback.textContent = "Correto!";
+                        feedback.classList.add('correct');
+                        feedback.classList.remove('incorrect');
+                        feedback.style.display = 'block';
+                        correctCount++;
+                    } else {
+                        options[userAnswer].classList.add('incorrect');
+                        options[q.correctIndex].classList.add('correct');
+                        feedback.textContent = `Incorreto. A resposta correta é: ${q.options[q.correctIndex]}`;
+                        feedback.classList.add('incorrect');
+                        feedback.classList.remove('correct');
+                        feedback.style.display = 'block';
+                    }
+                } else {
+                    options[q.correctIndex].classList.add('correct');
+                    feedback.textContent = `Você não respondeu. A resposta correta é: ${q.options[q.correctIndex]}`;
+                    feedback.classList.add('incorrect');
+                    feedback.classList.remove('correct');
+                    feedback.style.display = 'block';
+                }
+            });
+            
+            // Mostrar resultados
+            const results = document.getElementById('results');
+            const scoreValue = document.getElementById('score-value');
+            const resultsMessage = document.getElementById('results-message');
+            
+            scoreValue.textContent = correctCount;
+            results.style.display = 'block';
+            
+            if (correctCount >= 26) {
+                resultsMessage.textContent = "Parabéns! Você demonstrou um bom conhecimento dos conceitos ITIL 4.";
+            } else if (correctCount >= 16) {
+                resultsMessage.textContent = "Bom trabalho! Você tem conhecimentos básicos, mas precisa estudar mais alguns tópicos.";
+            } else {
+                resultsMessage.textContent = "Você precisa estudar mais os conceitos ITIL 4 antes de fazer o exame real.";
+            }
+            
+            // Rolar para os resultados
+            results.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reiniciar o simulado
+        function restartQuiz() {
+            userAnswers = Array(questions.length).fill(null);
+            quizSubmitted = false;
+            
+            const results = document.getElementById('results');
+            results.style.display = 'none';
+            
+            initializeQuiz();
+        }
+
+        // Event listeners
+        document.getElementById('check-answers').addEventListener('click', checkAnswers);
+        document.getElementById('restart').addEventListener('click', restartQuiz);
+
+        // Inicializar o simulado quando a página carregar
+        window.addEventListener('load', initializeQuiz);
+    </script>
+</body>
+</html>

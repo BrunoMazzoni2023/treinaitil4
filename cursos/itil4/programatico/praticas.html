@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 5 - Práticas de Gerenciamento ITIL | ITIL 4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #6f42c1;
+            --accent-color: #36b9cc;
+            --light-bg: #f8f9fc;
+            --general-practice: #4e73df;
+            --service-practice: #1cc88a;
+            --technical-practice: #f6c23e;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        
+        .module-nav {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .key-message {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .practice-section {
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .practice-general {
+            background: linear-gradient(135deg, rgba(78, 115, 223, 0.1), rgba(108, 92, 231, 0.1));
+            border-left: 4px solid var(--general-practice);
+        }
+        
+        .practice-service {
+            background: linear-gradient(135deg, rgba(28, 200, 138, 0.1), rgba(0, 184, 148, 0.1));
+            border-left: 4px solid var(--service-practice);
+        }
+        
+        .practice-technical {
+            background: linear-gradient(135deg, rgba(246, 194, 62, 0.1), rgba(253, 203, 110, 0.1));
+            border-left: 4px solid var(--technical-practice);
+        }
+        
+        .practice-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .practice-list {
+            list-style-type: none;
+            padding-left: 0;
+            column-count: 2;
+            column-gap: 2rem;
+        }
+        
+        .practice-list li {
+            padding: 0.5rem 0;
+            break-inside: avoid;
+        }
+        
+        .practice-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .high-speed-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .paradigm-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .paradigm-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .paradigm-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .paradigm-list li::before {
+            content: "✓";
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .consideration-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            height: 12px;
+            border-radius: 10px;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: #495057;
+        }
+        
+        .practice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .practice-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .practice-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+        
+        .practice-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <div class="header text-center">
+            <h1><i class="bi bi-tools"></i> Capítulo 5</h1>
+            <p class="lead mb-0">Práticas de Gerenciamento ITIL</p>
+        </div>
+        
+        <!-- Navegação -->
+        <div class="module-nav">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Práticas de Gerenciamento</h4>
+                <div class="d-flex">
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        <i class="bi bi-download"></i> Material
+                    </button>
+                    <button class="btn btn-sm btn-outline-success">
+                        <i class="bi bi-journal-text"></i> Notas
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#overview">Visão Geral</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#general">Práticas Gerais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#service">Práticas de Serviço</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#technical">Práticas Técnicas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#highspeed">Alta Velocidade</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Conteúdo principal -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Visão Geral -->
+                <div class="content-card" id="overview">
+                    <h3 class="chapter-title">Práticas de Gerenciamento ITIL</h3>
+                    
+                    <div class="key-message">
+                        <h5><i class="bi bi-chat-quote"></i> Mensagem-chave</h5>
+                        <p class="mb-0">Na ITIL, uma prática de gerenciamento é um conjunto de recursos organizacionais projetados para realizar um trabalho ou cumprir um objetivo.</p>
+                    </div>
+                    
+                    <p>O SVS da ITIL inclui 14 práticas gerais de gerenciamento, 17 práticas de gerenciamento de serviço e três práticas de gerenciamento técnico, os quais estão sujeitos às quatro dimensões do gerenciamento de serviço.</p>
+                    
+                    <h4>Origens das Práticas:</h4>
+                    <ul>
+                        <li><strong>Práticas gerais de gerenciamento:</strong> Adotadas ou adaptadas para o gerenciamento de serviço dos domínios gerais de gerenciamento do negócio.</li>
+                        <li><strong>Práticas de gerenciamento de serviço:</strong> Desenvolvidas em um gerenciamento de serviço e indústrias GSTI.</li>
+                        <li><strong>Práticas de gerenciamento técnico:</strong> Adaptadas de domínios de gerenciamento tecnológico para fins de gerenciamento de serviço.</li>
+                    </ul>
+                    
+                    <h4>Tabela 5.1 - As Práticas de Gerenciamento ITIL</h4>
+                    
+                    <div class="table-responsive">
+                        <table class="practice-table">
+                            <thead>
+                                <tr>
+                                    <th width="33%">Práticas Gerais de Gerenciamento</th>
+                                    <th width="33%">Práticas de Gerenciamento de Serviço</th>
+                                    <th width="33%">Práticas de Gerenciamento Técnico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gerenciamento de arquitetura</td>
+                                    <td>Gerenciamento de disponibilidade</td>
+                                    <td>Gerenciamento de implantação</td>
+                                </tr>
+                                <tr>
+                                    <td>Melhoria contínua</td>
+                                    <td>Análise de negócio</td>
+                                    <td>Gerenciamento de infraestrutura e plataforma</td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de segurança da informação</td>
+                                    <td>Gerenciamento de desempenho e capacidade</td>
+                                    <td>Desenvolvimento e gerenciamento de software</td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de conhecimento</td>
+                                    <td>Habilitação de mudança</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Medição e relatório</td>
+                                    <td>Gerenciamento de incidente</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de mudança organizacional</td>
+                                    <td>Gerenciamento de ativo de TI</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de portfólio</td>
+                                    <td>Monitoração e gerenciamento de evento</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de projetos</td>
+                                    <td>Gerenciamento de problema</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de relacionamento</td>
+                                    <td>Gerenciamento de liberação</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de risco</td>
+                                    <td>Gerenciamento de catálogo de serviço</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento financeiro de serviço</td>
+                                    <td>Gerenciamento de configuração de serviço</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de estratégia</td>
+                                    <td>Gerenciamento de continuidade de serviço</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de fornecedor</td>
+                                    <td>Desenho de serviço</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Gerenciamento de força de trabalho e talento</td>
+                                    <td>Central de serviço</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Gerenciamento de nível de serviço</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Gerenciamento de requisição de serviço</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Validação e testes de serviço</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Práticas Gerais de Gerenciamento -->
+                <div class="content-card" id="general">
+                    <h3 class="chapter-title">5.1 Práticas Gerais de Gerenciamento</h3>
+                    
+                    <div class="practice-section practice-general">
+                        <p>Práticas adotadas ou adaptadas para o gerenciamento de serviço dos domínios gerais de gerenciamento do negócio.</p>
+                        
+                        <ul class="practice-list">
+                            <li><strong>Gerenciamento de arquitetura:</strong> Fornece uma compreensão de todos os diferentes elementos que compõem uma organização e como esses elementos se inter-relacionam.</li>
+                            <li><strong>Melhoria contínua:</strong> Assegura que as performances das organizações continuamente atendam às expectativas das partes interessadas.</li>
+                            <li><strong>Gerenciamento de segurança da informação:</strong> Protege a informação necessária à organização.</li>
+                            <li><strong>Gerenciamento de conhecimento:</strong> Mantém e melhora o uso eficaz, eficiente e conveniente da informação e do conhecimento em toda a organização.</li>
+                            <li><strong>Medição e relatório:</strong> Fornece às partes interessadas informações precisas e úteis para apoio à tomada de decisões.</li>
+                            <li><strong>Gerenciamento de mudança organizacional:</strong> Assegura que mudanças em organizações sejam implementadas de maneira suave e bem-sucedida.</li>
+                            <li><strong>Gerenciamento de portfólio:</strong> Assegura que a organização tenha o mix certo de programas, projetos, produtos e serviços para executar a estratégia dentro de seus recursos e capacidade de risco.</li>
+                            <li><strong>Gerenciamento de projetos:</strong> Assegura que todos os projetos da organização sejam bem-sucedidos.</li>
+                            <li><strong>Gerenciamento de relacionamento:</strong> Estabelece e nutre os vínculos entre a organização e suas partes interessadas.</li>
+                            <li><strong>Gerenciamento de risco:</strong> Assegura que a organização compreende e efetivamente trata riscos.</li>
+                            <li><strong>Gerenciamento financeiro de serviço:</strong> Assegura que os recursos financeiros e os investimentos da organização sejam utilizados com eficácia.</li>
+                            <li><strong>Gerenciamento de estratégia:</strong> Formula os objetivos da organização e adota cursos de ação e alocação de recursos necessários para alcançar esses objetivos.</li>
+                            <li><strong>Gerenciamento de fornecedor:</strong> Assegura que os fornecedores da organização e seus desempenhos sejam gerenciados adequadamente para suportar a entrega de produtos e serviços de qualidade.</li>
+                            <li><strong>Gerenciamento de força de trabalho e talento:</strong> Assegura que a organização tenha a força de trabalho correta, com as habilidades e conhecimentos corretos.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Práticas de Gerenciamento de Serviço -->
+                <div class="content-card" id="service">
+                    <h3 class="chapter-title">5.2 Práticas de Gerenciamento de Serviço</h3>
+                    
+                    <div class="practice-section practice-service">
+                        <p>Práticas desenvolvidas em um gerenciamento de serviço e indústrias GSTI.</p>
+                        
+                        <ul class="practice-list">
+                            <li><strong>Gerenciamento de disponibilidade:</strong> Assegura que serviços entreguem níveis acordados de disponibilidade.</li>
+                            <li><strong>Análise de negócio:</strong> Analisa o negócio ou partes dele, define soluções relacionadas e articula mudanças necessárias.</li>
+                            <li><strong>Gerenciamento de desempenho e capacidade:</strong> Assegura que serviços entreguem níveis acordados de desempenho.</li>
+                            <li><strong>Habilitação de mudança:</strong> Assegura que mudanças sejam avaliadas, aprovadas e coordenadas.</li>
+                            <li><strong>Gerenciamento de incidente:</strong> Minimiza o impacto negativo de incidentes restaurando a operação normal do serviço.</li>
+                            <li><strong>Gerenciamento de ativo de TI:</strong> Planeja e gerencia o ciclo de vida completo de todos os ativos de TI.</li>
+                            <li><strong>Monitoração e gerenciamento de evento:</strong> Observa sistematicamente serviços e CIs para detectar mudanças de estado.</li>
+                            <li><strong>Gerenciamento de problema:</strong> Reduz a probabilidade e impacto de incidentes identificando causas reais e potenciais.</li>
+                            <li><strong>Gerenciamento de liberação:</strong> Assegura que novas e modificadas services e features sejam disponibilizadas para uso.</li>
+                            <li><strong>Gerenciamento de catálogo de serviço:</strong> Fornece uma única fonte de informação consistente sobre todos os serviços e offers de serviço.</li>
+                            <li><strong>Gerenciamento de configuração de serviço:</strong> Assegura que informação precisa e confiável sobre a configuração de serviços e CIs esteja disponível.</li>
+                            <li><strong>Gerenciamento de continuidade de serviço:</strong> Assegura que a disponibilidade e performance de um serviço sejam mantidas em níveis suficientes em caso de desastre.</li>
+                            <li><strong>Desenho de serviço:</strong> Assegura que produtos e serviços continuamente atendam às necessidades das partes interessadas para qualidade, custo e experiência do usuário.</li>
+                            <li><strong>Central de serviço:</strong> Estabelece e mantém um ponto único de contato entre o provedor de serviço e seus usuários.</li>
+                            <li><strong>Gerenciamento de nível de serviço:</strong> Estabelece e nutre objetivos claros e baseados no negócio para performance de serviço.</li>
+                            <li><strong>Gerenciamento de requisição de serviço:</strong> Suporta a entrega agilizada e padronizada de requisições de serviço predefinidas e de baixo risco.</li>
+                            <li><strong>Validação e testes de serviço:</strong> Assegura que novos e modificados produtos e serviços atendam aos requisitos definidos.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Práticas de Gerenciamento Técnico -->
+                <div class="content-card" id="technical">
+                    <h3 class="chapter-title">5.3 Práticas de Gerenciamento Técnico</h3>
+                    
+                    <div class="practice-section practice-technical">
+                        <p>Práticas adaptadas de domínios de gerenciamento tecnológico para fins de gerenciamento de serviço.</p>
+                        
+                        <ul class="practice-list">
+                            <li><strong>Gerenciamento de implantação:</strong> Move novos ou modificados hardware, software, documentação, processos, ou qualquer outro componente para ambientes de produção.</li>
+                            <li><strong>Gerenciamento de infraestrutura e plataforma:</strong> Supervisiona a infraestrutura e plataformas utilizadas por uma organização.</li>
+                            <li><strong>Desenvolvimento e gerenciamento de software:</strong> Planeja, desenvolve e mantém aplicações de software e componentes de software.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Entrega de Serviço de Alta Velocidade -->
+                <div class="content-card" id="highspeed">
+                    <h3 class="chapter-title">GSTI no Mundo Moderno: Entrega de Serviço de Alta Velocidade</h3>
+                    
+                    <div class="high-speed-section">
+                        <h4><i class="bi bi-lightning"></i> O Paradigma da Entrega de Serviço de Alta Velocidade</h4>
+                        <p>Na inovação e diferenciação empresarial, a velocidade de entrada no mercado é um fator chave de sucesso. Se uma organização demorar muito para implementar uma nova ideia de negócio, é provável que seja feito com mais rápido por outra.</p>
+                        
+                        <p>O paradigma inclui:</p>
+                        
+                        <ul class="paradigm-list">
+                            <li>Foco em uma entrega rápida de serviços de TI novos e modificados para os usuários</li>
+                            <li>Análise contínua do feedback fornecido para os serviços de TI em cada estágio de seu ciclo de vida</li>
+                            <li>Agilidade no processamento do feedback, proporcionando melhoria contínua e rápida dos serviços de TI</li>
+                            <li>Uma abordagem ponta a ponta para o ciclo de vida do serviço, da ideação, criação e entrega até o consumo de serviços</li>
+                            <li>Integração de práticas de gerenciamento de produtos e serviços</li>
+                            <li>Digitalização da infraestrutura de TI e adoção de computação em nuvem</li>
+                            <li>Ampla automação da cadeia de entrega do serviço</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Considerações para Entrega de Alta Velocidade</h4>
+                    <p>A entrega de serviço em alta velocidade influencia todas as práticas de um provedor de serviço. Uma organização que visa entregar e melhorar seus serviços mais rápido precisa considerar:</p>
+                    
+                    <div class="consideration-card">
+                        <h5><i class="bi bi-kanban"></i> Gerenciamento de Projeto Agile</h5>
+                        <p class="mb-0">Metodologias ágeis para desenvolvimento e entrega rápida de valor.</p>
+                    </div>
+                    
+                    <div class="consideration-card">
+                        <h5><i class="bi bi-cash-coin"></i> Gerenciamento Financeiro Agile</h5>
+                        <p class="mb-0">Processos financeiros adaptados para ciclos de entrega rápidos.</p>
+                    </div>
+                    
+                    <div class="consideration-card">
+                        <h5><i class="bi bi-diagram-3"></i> Estrutura Organizacional Baseada em Produto</h5>
+                        <p class="mb-0">Organização focada em produtos em vez de projetos ou funções.</p>
+                    </div>
+                    
+                    <div class="consideration-card">
+                        <h5><i class="bi bi-shield-exclamation"></i> Gerenciamento de Risco Adaptativo</h5>
+                        <p class="mb-0">Abordagens flexíveis para gerenciamento de risco e conformidade.</p>
+                    </div>
+                    
+                    <div class="consideration-card">
+                        <h5><i class="bi bi-puzzle"></i> Gerenciamento Flexível de Arquitetura</h5>
+                        <p class="mb-0">Arquiteturas específicas como microsserviços para maior agilidade.</p>
+                    </div>
+                    
+                    <div class="key-message mt-4">
+                        <h5><i class="bi bi-exclamation-triangle"></i> Desafio da TI Bimodal</h5>
+                        <p class="mb-0">A TI bimodal, em que o gerenciamento de serviço de alta velocidade é combinado com práticas tradicionais, introduz complexidade e desafios adicionais. Para muitas organizações modernas, a entrega de serviço em alta velocidade não é mais uma opção, mas uma necessidade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barra de progresso e navegação -->
+        <div class="progress-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Progresso do Capítulo</h5>
+                <span class="badge bg-primary">100% Completo</span>
+            </div>
+            <div class="progress mb-4">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="svc.html" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Capítulo Anterior
+                </a>
+                <a href="improvement.html" class="btn btn-primary">
+                    Próximo Capítulo <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+        
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

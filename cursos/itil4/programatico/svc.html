@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadeia de Valor de Serviço ITIL | ITIL 4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #6f42c1;
+            --accent-color: #36b9cc;
+            --light-bg: #f8f9fc;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        
+        .module-nav {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .key-message {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .value-chain-activity {
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .value-chain-activity:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .activity-plan { background: linear-gradient(135deg, #4e73df, #6c5ce7); }
+        .activity-improve { background: linear-gradient(135deg, #1cc88a, #00b894); }
+        .activity-engage { background: linear-gradient(135deg, #36b9cc, #00cec9); }
+        .activity-design { background: linear-gradient(135deg, #f6c23e, #fdcb6e); }
+        .activity-obtain { background: linear-gradient(135deg, #e74a3b, #d63031); }
+        .activity-deliver { background: linear-gradient(135deg, #6f42c1, #a29bfe); }
+        
+        .activity-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .rules-section {
+            background-color: #e9f7fe;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .flow-value-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .example-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .value-chain-diagram {
+            text-align: center;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            height: 12px;
+            border-radius: 10px;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: #495057;
+        }
+        
+        .practice-badge {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin: 0.2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <div class="header text-center">
+            <h1><i class="bi bi-link-45deg"></i> Cadeia de Valor de Serviço ITIL</h1>
+            <p class="lead mb-0">O elemento central do Sistema de Valor de Serviço</p>
+        </div>
+        
+        <!-- Navegação -->
+        <div class="module-nav">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Atividades da Cadeia de Valor</h4>
+                <div class="d-flex">
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        <i class="bi bi-download"></i> Material
+                    </button>
+                    <button class="btn btn-sm btn-outline-success">
+                        <i class="bi bi-journal-text"></i> Notas
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#overview">Visão Geral</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#activities">Atividades</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#rules">Regras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#flows">Fluxos de Valor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#example">Exemplo Prático</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Conteúdo principal -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Visão Geral -->
+                <div class="content-card" id="overview">
+                    <h3 class="chapter-title">4.5 Cadeia de Valor de Serviço</h3>
+                    
+                    <div class="key-message">
+                        <h5><i class="bi bi-chat-quote"></i> Mensagem-chave</h5>
+                        <p class="mb-0">O elemento central do SVS é a cadeia de valor de serviço, um modelo operacional que delineia as principais atividades exigidas para responder à demanda e facilitar a realização de valor por meio da criação e gerenciamento de produtos e serviços.</p>
+                    </div>
+                    
+                    <p>Como mostrado na Figura 4.2, a cadeia de valor de serviço ITIL inclui seis atividades, os quais conduzem à criação de produtos e serviços e, por sua vez, valor.</p>
+                    
+                    <div class="value-chain-diagram">
+                        <h5>Figura 4.2 - A Cadeia de Valor do Serviço ITIL</h5>
+                        <img src="https://via.placeholder.com/600x400?text=Diagrama+da+Cadeia+de+Valor+de+Serviço" class="img-fluid rounded" alt="Diagrama da Cadeia de Valor de Serviço ITIL">
+                        <p class="text-muted mt-2">As seis atividades interconectadas da cadeia de valor de serviço</p>
+                    </div>
+                    
+                    <p>Essas atividades representam as etapas que uma organização realiza na criação de valor. Cada atividade transforma entradas em saídas. Essas entradas podem ser demandas originadas externamente à cadeia de valor ou saídas de outras atividades. Todas as atividades estão interconectadas, sendo que cada uma delas recebe e fornece gatilhos para ações adicionais.</p>
+                    
+                    <div class="key-message">
+                        <h5><i class="bi bi-list-check"></i> As Seis Atividades da Cadeia de Valor</h5>
+                        <ul class="mb-0">
+                            <li>Planejar</li>
+                            <li>Melhorar</li>
+                            <li>Engajar</li>
+                            <li>Desenho e transição</li>
+                            <li>Obtenção/construção</li>
+                            <li>Entrega e suporte</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Atividades da Cadeia de Valor -->
+                <div class="content-card" id="activities">
+                    <h3 class="chapter-title">As Seis Atividades da Cadeia de Valor</h3>
+                    
+                    <!-- Planejar -->
+                    <div class="value-chain-activity activity-plan">
+                        <div class="activity-icon">
+                            <i class="bi bi-clipboard-check"></i>
+                        </div>
+                        <h3>1. Planejar</h3>
+                        <p>Estabelecer uma compreensão compartilhada da visão, direção atual e futuro estado de todos os produtos e serviços.</p>
+                        <p><strong>Função:</strong> Todo o planejamento em todos os níveis é realizado via planejar.</p>
+                    </div>
+                    
+                    <!-- Melhorar -->
+                    <div class="value-chain-activity activity-improve">
+                        <div class="activity-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h3>2. Melhorar</h3>
+                        <p>Assegurar melhoria contínua de produtos, serviços e práticas em todos os níveis da organização.</p>
+                        <p><strong>Função:</strong> Todas as melhorias em todos os níveis são iniciadas e gerenciadas via melhorar.</p>
+                    </div>
+                    
+                    <!-- Engajar -->
+                    <div class="value-chain-activity activity-engage">
+                        <div class="activity-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h3>3. Engajar</h3>
+                        <p>Fornecer uma boa compreensão das necessidades das partes interessadas, transparência e bom relacionamento com todas as partes interessadas.</p>
+                        <p><strong>Função:</strong> Todas as interações de entrada e saída com partes externas à cadeia de valor são realizadas via engajar.</p>
+                    </div>
+                    
+                    <!-- Desenho e Transição -->
+                    <div class="value-chain-activity activity-design">
+                        <div class="activity-icon">
+                            <i class="bi bi-pencil"></i>
+                        </div>
+                        <h3>4. Desenho e Transição</h3>
+                        <p>Garantir que produtos e serviços atendam às expectativas das partes interessadas para qualidade, custo e tempo de entrega.</p>
+                        <p><strong>Função:</strong> Transformar requisitos em soluções que possam ser entregues com eficácia.</p>
+                    </div>
+                    
+                    <!-- Obtenção/Construção -->
+                    <div class="value-chain-activity activity-obtain">
+                        <div class="activity-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h3>5. Obtenção/Construção</h3>
+                        <p>Garantir que componentes de serviço estejam disponíveis quando e onde necessários, e atendam às especificações acordadas.</p>
+                        <p><strong>Função:</strong> Todos os novos recursos são adquiridos por obtenção/construção.</p>
+                    </div>
+                    
+                    <!-- Entrega e Suporte -->
+                    <div class="value-chain-activity activity-deliver">
+                        <div class="activity-icon">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <h3>6. Entrega e Suporte</h3>
+                        <p>Garantir que serviços sejam entregues e suportados de acordo com especificações acordadas e expectativas das partes interessadas.</p>
+                        <p><strong>Função:</strong> Garantir operação contínua e valor sustentado dos serviços.</p>
+                    </div>
+                    
+                    <div class="key-message mt-4">
+                        <h5><i class="bi bi-lightbulb"></i> Como Funciona</h5>
+                        <p class="mb-0">Para converter entradas em saídas, as atividades da cadeia de valor usam diferentes combinações de práticas ITIL (conjuntos de recursos para executar certos tipos de trabalho), recorrendo a recursos internos ou de terceiros, processos, habilidades e competências, conforme necessário.</p>
+                    </div>
+                </div>
+                
+                <!-- Regras da Cadeia de Valor -->
+                <div class="content-card" id="rules">
+                    <h3 class="chapter-title">Regras da Cadeia de Valor de Serviço</h3>
+                    
+                    <div class="rules-section">
+                        <h5><i class="bi bi-diagram-3"></i> Regras Comuns</h5>
+                        <p>Independentemente de quais práticas são implantadas, há algumas regras comuns quando se utiliza a cadeia de valor de serviço:</p>
+                        
+                        <ul>
+                            <li><strong>Todas as interações</strong> de entrada e saída com partes externas à cadeia de valor são realizadas via <strong>engajar</strong></li>
+                            <li><strong>Todos os novos recursos</strong> são adquiridos por <strong>obtenção/construção</strong></li>
+                            <li><strong>Planejamento em todos os níveis</strong> é realizado via <strong>planejar</strong></li>
+                            <li><strong>Melhorias em todos os níveis</strong> são iniciados e gerenciados via <strong>melhorar</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="key-message">
+                        <h5><i class="bi bi-puzzle"></i> Exemplo de Práticas Utilizadas</h5>
+                        <p>Por exemplo, a atividade de <strong>engajar</strong> pode recorrer a:</p>
+                        <div class="text-center">
+                            <span class="practice-badge">Gerenciamento de Fornecedor</span>
+                            <span class="practice-badge">Gerenciamento da Central de Serviço</span>
+                            <span class="practice-badge">Gerenciamento de Relacionamento</span>
+                            <span class="practice-badge">Gerenciamento de Requisição de Serviço</span>
+                        </div>
+                        <p class="mb-0 mt-2">...para responder a novas demandas por produtos e serviços ou informações de várias partes interessadas.</p>
+                    </div>
+                </div>
+                
+                <!-- Fluxos de Valor -->
+                <div class="content-card" id="flows">
+                    <h3 class="chapter-title">Fluxos de Valor de Serviço</h3>
+                    
+                    <div class="flow-value-section">
+                        <h4><i class="bi bi-shuffle"></i> Combinações Específicas para Cenários Particulares</h4>
+                        <p>Para realizar uma determinada tarefa ou responder a uma situação particular, as organizações criam fluxos de valor de serviço. Tratam-se de combinações específicas de atividades e práticas, e cada uma delas é projetada para um cenário particular.</p>
+                    </div>
+                    
+                    <p>Uma vez projetados, os fluxos de valor devem estar sujeitos a melhoria contínua.</p>
+                    
+                    <div class="example-card">
+                        <h5><i class="bi bi-example"></i> Exemplo: Resolução de Incidente</h5>
+                        <p>Um fluxo de valor pode ser criado para uma situação na qual um usuário de um serviço precisa que um incidente seja resolvido. O fluxo de valor será projetado especificamente para resolver essa questão e fornecerá um guia completo para as atividades, práticas e papéis envolvidos.</p>
+                    </div>
+                    
+                    <h4>Características dos Fluxos de Valor</h4>
+                    <ul>
+                        <li><strong>Específicos para cenários:</strong> Cada fluxo é projetado para uma situação particular</li>
+                        <li><strong>Combinatórios:</strong> Combinam atividades e práticas de várias maneiras</li>
+                        <li><strong>Orientados a resultados:</strong> Projetados para alcançar objetivos específicos</li>
+                        <li><strong>Melhoráveis:</strong> Devem estar sujeitos a melhoria contínua</li>
+                        <li><strong>Adaptáveis:</strong> Podem ser ajustados conforme mudam as necessidades</li>
+                    </ul>
+                </div>
+                
+                <!-- Exemplo Prático -->
+                <div class="content-card" id="example">
+                    <h3 class="chapter-title">Exemplo Prático: Empresa de Desenvolvimento de Aplicativos</h3>
+                    
+                    <p>Uma empresa de desenvolvimento de aplicativos móveis tem uma cadeia de valor, permitindo o ciclo completo de desenvolvimento e gerenciamento de aplicativos, desde a análise de negócio até o desenvolvimento, liberação e suporte.</p>
+                    
+                    <h5>Práticas Desenvolvidas:</h5>
+                    <div class="text-center mb-4">
+                        <span class="practice-badge">Análise de Negócio</span>
+                        <span class="practice-badge">Desenvolvimento</span>
+                        <span class="practice-badge">Testes</span>
+                        <span class="practice-badge">Liberação e Implantação</span>
+                        <span class="practice-badge">Suporte</span>
+                    </div>
+                    
+                    <h5>Exemplos de Fluxos de Valor:</h5>
+                    
+                    <div class="example-card">
+                        <h6><i class="bi bi-phone"></i> 1. Desenvolvimento de Novo Aplicativo</h6>
+                        <p class="mb-0">Engajamento inicial (pré-venda) → Análise de negócio → Prototipagem → Preparação de acordos → Desenvolvimento → Testes → Liberação e suporte</p>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h6><i class="bi bi-arrow-repeat"></i> 2. Mudança em Aplicativo Existente</h6>
+                        <p class="mb-0">Análise de negócio → Desenvolvimento → Testes → Suporte (sem fase de pré-venda)</p>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h6><i class="bi bi-bug"></i> 3. Correção de Erro em Produção</h6>
+                        <p class="mb-0">Suporte (identificação) → Liberação (reversão para versão estável) → Desenvolvimento (correção) → Testes → Liberação (nova versão)</p>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h6><i class="bi bi-lightbulb"></i> 4. Experimentos com Novos Recursos</h6>
+                        <p class="mb-0">Planejamento da inovação → Prototipagem → Desenvolvimento → Liberação piloto (grupo limitado) → Teste de percepção</p>
+                    </div>
+                    
+                    <div class="key-message mt-4">
+                        <h5><i class="bi bi-puzzle"></i> Flexibilidade da Cadeia de Valor</h5>
+                        <p class="mb-0">Estes são exemplos de fluxos de valor: eles combinam práticas e atividades da cadeia de valor de várias maneiras para melhorar produtos e serviços e aumentar o valor potencial para os consumidores e para a organização.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Barra de progresso e navegação -->
+        <div class="progress-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Progresso do Capítulo</h5>
+                <span class="badge bg-primary">100% Completo</span>
+            </div>
+            <div class="progress mb-4">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="svs.html" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Capítulo Anterior
+                </a>
+                <a href="practices.html" class="btn btn-primary">
+                    Próximo Capítulo <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+        
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
