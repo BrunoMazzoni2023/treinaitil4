@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus ITIL 4 Foundation</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray: #94a3b8;
+            --card-bg: #ffffff;
+            --header-bg: #0f172a;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .card-content.active {
+            display: block;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
+        
+        .bloom-level {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .bloom-1 {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .bloom-2 {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .points {
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .exam-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        .question-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .question-type {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-type h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .example {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        @media (max-width: 768px) {
+            .exam-info, .question-types {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ITIL® 4 Foundation</h1>
+        <p class="subtitle">Syllabus do Candidato</p>
+    </header>
+
+    <div class="container">
+        <h2>Visão Geral do Exame</h2>
+        <div class="exam-info">
+            <div class="info-card">
+                <h3>Material Permitido</h3>
+                <p>Nenhum. O exame é sem consulta.</p>
+            </div>
+            <div class="info-card">
+                <h3>Duração</h3>
+                <p>60 minutos (75 minutos para não nativos)</p>
+            </div>
+            <div class="info-card">
+                <h3>Número de Questões</h3>
+                <p>40 questões de múltipla escolha</p>
+            </div>
+            <div class="info-card">
+                <h3>Nota de Aprovação</h3>
+                <p>65% (26/40 pontos)</p>
+            </div>
+        </div>
+
+        <h2>Tipos de Questão</h2>
+        <div class="question-types">
+            <div class="question-type">
+                <h3>Padrão</h3>
+                <p>Pergunta com quatro opções de resposta.</p>
+                <div class="example">
+                    <p><strong>Exemplo:</strong> Qual das alternativas abaixo é uma fonte de melhor prática?</p>
+                    <p>a) Q<br>b) P<br>c) R<br>d) S</p>
+                </div>
+            </div>
+            <div class="question-type">
+                <h3>Lista</h3>
+                <p>Lista com quatro afirmativas, selecione duas corretas.</p>
+                <div class="example">
+                    <p><strong>Exemplo:</strong> Qual afirmativa sobre o gerenciamento de configuração de serviço está CORRETA?</p>
+                    <p>1. Ele faz Q<br>2. Ele faz P<br>3. Ele faz R<br>4. Ele faz S</p>
+                    <p>a) 1 e 2<br>b) 2 e 3<br>c) 3 e 4<br>d) 1 e 4</p>
+                </div>
+            </div>
+            <div class="question-type">
+                <h3>Palavra Faltante</h3>
+                <p>Complete a lacuna na frase.</p>
+                <div class="example">
+                    <p><strong>Exemplo:</strong> Identifique as palavras que estão faltando na frase a seguir.</p>
+                    <p>Um [7] define os requisitos dos serviços e assume a responsabilidade pelos resultados do consumo de serviço.</p>
+                    <p>a) Papel Q<br>b) Papel P<br>c) Papel R<br>d) Papel S</p>
+                </div>
+            </div>
+            <div class="question-type">
+                <h3>Negativa</h3>
+                <p>Identifique a opção que NÃO se aplica.</p>
+                <div class="example">
+                    <p><strong>Exemplo:</strong> Qual das opções a seguir NÃO é uma área de valor definida?</p>
+                    <p>a) Q<br>b) P<br>c) R<br>d) S</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Conteúdo Programático</h2>
+        
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(1)">
+                <h2>1. Conceitos-chave do gerenciamento de serviço</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-1">
+                <table>
+                    <tr>
+                        <th>Critérios de avaliação</th>
+                        <th>Nível Bloom</th>
+                        <th>Pontos</th>
+                    </tr>
+                    <tr>
+                        <td>1.1 Recordar a definição de: serviço, utilidade, garantia, cliente, usuário, gerenciamento de serviço, patrocinador</td>
+                        <td><span class="bloom-level bloom-1">Nível 1</span></td>
+                        <td class="points">2</td>
+                    </tr>
+                    <tr>
+                        <td>1.2 Descrever os conceitos-chave da criação de valor: custo, valor, organização, resultado, saída, risco, utilidade, garantia</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">2</td>
+                    </tr>
+                    <tr>
+                        <td>1.3 Descrever os conceitos-chave dos relacionamentos de serviço: oferta de serviço, gerenciamento de relacionamento, provisão de serviço, consumo de serviço</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">1</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(2)">
+                <h2>2. Princípios orientadores ITIL</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-2">
+                <table>
+                    <tr>
+                        <th>Critérios de avaliação</th>
+                        <th>Nível Bloom</th>
+                        <th>Pontos</th>
+                    </tr>
+                    <tr>
+                        <td>2.1 Descrever a natureza, uso e interação dos princípios orientadores</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">1</td>
+                    </tr>
+                    <tr>
+                        <td>2.2 Explicar o uso dos princípios orientadores: foco no valor, começar de onde você está, progredir iterativamente, colaborar, pensar holisticamente, manter simples, otimizar e automatizar</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">5</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(3)">
+                <h2>3. Quatro dimensões do gerenciamento de serviço</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-3">
+                <table>
+                    <tr>
+                        <th>Critérios de avaliação</th>
+                        <th>Nível Bloom</th>
+                        <th>Pontos</th>
+                    </tr>
+                    <tr>
+                        <td>3.1 Descrever as quatro dimensões: organizações e pessoas, informação e tecnologia, parceiros e fornecedores, fluxos de valor e processos</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">2</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(4)">
+                <h2>4. Sistema de valor de serviço (SVS) ITIL</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-4">
+                <table>
+                    <tr>
+                        <th>Critérios de avaliação</th>
+                        <th>Nível Bloom</th>
+                        <th>Pontos</th>
+                    </tr>
+                    <tr>
+                        <td>4.1 Descrever o sistema de valor de serviço (SVS) ITIL</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">1</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(5)">
+                <h2>5. Cadeia de valor de serviço</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-5">
+                <table>
+                    <tr>
+                        <th>Critérios de avaliação</th>
+                        <th>Nível Bloom</th>
+                        <th>Pontos</th>
+                    </tr>
+                    <tr>
+                        <td>5.1 Descrever a natureza interconectada da cadeia de valor e como suporta os fluxos de valor</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">1</td>
+                    </tr>
+                    <tr>
+                        <td>5.2 Descrever o propósito de cada atividade: planejar, melhorar, engajar, desenho e transição, obtenção/construção, entrega e suporte</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">1</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(6)">
+                <h2>6. Práticas ITIL (propósito e conceitos)</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-6">
+                <table>
+                    <tr>
+                        <th>Critérios de avaliação</th>
+                        <th>Nível Bloom</th>
+                        <th>Pontos</th>
+                    </tr>
+                    <tr>
+                        <td>6.1 Recordar o propósito de 15 práticas ITIL</td>
+                        <td><span class="bloom-level bloom-1">Nível 1</span></td>
+                        <td class="points">5</td>
+                    </tr>
+                    <tr>
+                        <td>6.2 Recordar definições de: ativo de TI, evento, item de configuração, mudança, incidente, problema, erro conhecido</td>
+                        <td><span class="bloom-level bloom-1">Nível 1</span></td>
+                        <td class="points">2</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(7)">
+                <h2>7. Práticas ITIL (detalhadas)</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-7">
+                <table>
+                    <tr>
+                        <th>Critérios de avaliação</th>
+                        <th>Nível Bloom</th>
+                        <th>Pontos</th>
+                    </tr>
+                    <tr>
+                        <td>7.1 Explicar em detalhes 7 práticas: melhoria contínua, habilitação de mudança, gerenciamento de incidente, gerenciamento de problema, gerenciamento de requisição de serviço, central de serviço, gerenciamento de nível de serviço</td>
+                        <td><span class="bloom-level bloom-2">Nível 2</span></td>
+                        <td class="points">17</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(8)">
+                <h2>Distribuição de Pontos por Tópico</h2>
+                <span>▼</span>
+            </div>
+            <div class="card-content" id="content-8">
+                <table>
+                    <tr>
+                        <th>Tópico</th>
+                        <th>Pontos</th>
+                        <th>Percentual</th>
+                    </tr>
+                    <tr>
+                        <td>Conceitos-chave do gerenciamento de serviço</td>
+                        <td class="points">5</td>
+                        <td>12.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Princípios orientadores ITIL</td>
+                        <td class="points">6</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>Quatro dimensões do gerenciamento de serviço</td>
+                        <td class="points">2</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Sistema de valor de serviço (SVS)</td>
+                        <td class="points">1</td>
+                        <td>2.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Cadeia de valor de serviço</td>
+                        <td class="points">2</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Práticas ITIL (propósito e conceitos)</td>
+                        <td class="points">7</td>
+                        <td>17.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Práticas ITIL (detalhadas)</td>
+                        <td class="points">17</td>
+                        <td>42.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td class="points"><strong>40</strong></td>
+                        <td><strong>100%</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright © AXELOS Limited 2019. ITIL® é uma marca registrada da AXELOS Limited.</p>
+        <p>Este material é apenas para fins educacionais e de estudo.</p>
+    </footer>
+
+    <script>
+        function toggleCard(cardNumber) {
+            const content = document.getElementById(`content-${cardNumber}`);
+            const isActive = content.classList.contains('active');
+            
+            // Close all cards
+            document.querySelectorAll('.card-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // If it wasn't active, open it
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+        
+        // Open first card by default
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleCard(1);
+        });
+    </script>
+</body>
+</html>
